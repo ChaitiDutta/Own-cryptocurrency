@@ -1,23 +1,26 @@
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
+// import { Link } from 'react-router-dom'
 // import {FaArrowRight,FaArrowLeft} from 'react-icons/fa'
 import Slider from 'react-slick'
-function Corousel() {
+const Corousel=() =>{
 
     const[coin, setCoin]=useState([])
-    const[error, setError]=useState(false)
+    // const[error, setError]=useState(false)
     const[imgIdx, setImgIdx]=useState(0)
+    
 
     useEffect(()=>{
         axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=100&page=1&sparkline=false')
         .then(res=>{
             setCoin(res.data)
-            setError(false)
+            // setError(false)
+            
         })
         .catch(err=>{
             setCoin('')
-            setError('Something Went Wron!')
+            // setError('Something Went Wrong!')
         })
     },[])
 
@@ -42,7 +45,6 @@ function Corousel() {
 
   return (
     <div >
-        <div className='card'>
 
       {/* {TotalCoins} */}
       <Slider {...settings}>
@@ -51,20 +53,21 @@ function Corousel() {
                 <div key={info.id}
                 className={idx===imgIdx? 'slide activeSlide':'slide'}
                 >
+        {/* <Link  to={`/coins/${info.id}`}> */}
                <img src={info.image} alt={info.image} /> 
+    {/* </Link> */}
                <div className='card-div'>
                 <div>
                 {info.symbol}
                 </div>
-                <div>
-                {info.current_price}
+                <div style={{fontSize:'20px', fontWeight:'bold'}}>
+               ${info.total_volume.toLocaleString()}
                 </div>
                </div>
             </div>
         )
     })}
       </Slider>
-    </div>
       <div className='about-div'>
         <div className='about'>
           

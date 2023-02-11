@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {RiArrowDropDownLine} from 'react-icons/ri'
+// import React, { useState } from 'react'
+// import {RiArrowDropDownLine} from 'react-icons/ri'
 
 function Pagination({totalCoin, coinPerPage, paginate,active}) {
 
